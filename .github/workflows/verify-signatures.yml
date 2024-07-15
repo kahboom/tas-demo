@@ -49,6 +49,6 @@ jobs:
 
     - name: Verify Commit Signatures
       run: |
-        gitsign verify --certificate-identity=rachelyordan@gmail.com --certificate-oidc-issuer=token.actions.githubusercontent.com HEAD
+        gitsign verify --certificate-identity=rachelyordan@gmail.com --certificate-oidc-issuer=https://keycloak-keycloak-system.apps.rosa.ifiz9-9phbw-9fw.i5ut.p3.openshiftapps.com HEAD
       shell: bash
 
