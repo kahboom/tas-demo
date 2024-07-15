@@ -26,7 +26,6 @@ jobs:
       shell: bash
       run: |
         set -ex
-#        curl -fsL https://github.com/sigstore/gitsign/releases/download/v0.10.2/gitsign_0.10.2_linux_amd64 -o /usr/local/bin/gitsign
         curl -fsL ${{ secrets.CLUSTER_URL }}/clients/linux/gitsign-amd64.gz -o /usr/local/bin/gitsign-amd64.gz
         gunzip /usr/local/bin/gitsign-amd64.gz
         chmod +x /usr/local/bin/gitsign-amd64
