@@ -8,8 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-  container:
-    image: registry.access.redhat.com/ubi9:latest
 
     steps:
     - name: Checkout code
