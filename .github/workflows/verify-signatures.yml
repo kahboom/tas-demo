@@ -46,8 +46,6 @@ jobs:
         git config --global commit.gpgsign true
         git config --global gpg.x509.program gitsign
         git config --global gpg.format x509
-        git config --local gitsign.fulcio 
-        git config --local gitsign.rekor 
 
     - name: Verify Commit Signatures
       run: |
