@@ -24,10 +24,14 @@ jobs:
       shell: bash
       run: |
         set -ex
-        curl -fsL ${{ secrets.CLUSTER_URL }}/clients/linux/gitsign-amd64.gz -o /usr/local/bin/gitsign-amd64.gz
+        curl -fsL https://cli-server-trusted-artifact-signer.apps.rosa.ifiz9-9phbw-9fw.i5ut.p3.openshiftapps.com/clients/linux/gitsign-amd64.gz -o /usr/local/bin/gitsign-amd64.gz
         gunzip /usr/local/bin/gitsign-amd64.gz
         chmod +x /usr/local/bin/gitsign-amd64
         mv /usr/local/bin/gitsign-amd64 /usr/local/bin/gitsign
+
+    - name: Initialize Gitsign
+      shell: bash
+      run: gitsign initialize --mirror=https://tuf-openshift-operators.apps.rosa.ifiz9-9phbw-9fw.i5ut.p3.openshiftapps.com --root=https://tuf-openshift-operators.apps.rosa.ifiz9-9phbw-9fw.i5ut.p3.openshiftapps.com/root.json
 
     - name: Verify Gitsign Installation
       run: |
@@ -45,6 +49,6 @@ jobs:
 
     - name: Verify Commit Signatures
       run: |
-        gitsign verify --certificate-identity=${{ secrets.IDENTITY_EMAIL }} --certificate-oidc-issuer=${{ secrets.OIDC_ISSUER }} HEAD
+        gitsign verify --certificate-identity=rachelyordan@gmail.com --certificate-oidc-issuer=token.actions.githubusercontent.com HEAD
       shell: bash
 
