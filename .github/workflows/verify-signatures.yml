@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+  container:
+    image: registry.access.redhat.com/ubi9:latest
 
     steps:
     - name: Checkout code
@@ -20,18 +22,15 @@ jobs:
         mkdir -p dist
         echo "Example artifact" > dist/artifact.txt
 
-#    - name: Upload output file
-#      uses: actions/upload-artifact@v4
-#      with:
-#        name: output-artifact
-#        path: dist/artifact.txt
-
     - name: Install Gitsign
       shell: bash
       run: |
         set -ex
-        curl -fsL https://github.com/sigstore/gitsign/releases/download/v0.10.2/gitsign_0.10.2_linux_amd64 -o /usr/local/bin/gitsign
-        chmod +x /usr/local/bin/gitsign
+#        curl -fsL https://github.com/sigstore/gitsign/releases/download/v0.10.2/gitsign_0.10.2_linux_amd64 -o /usr/local/bin/gitsign
+        curl -fsL ${{ secrets.CLUSTER_URL }}/clients/linux/gitsign-amd64.gz -o /usr/local/bin/gitsign-amd64.gz
+        gunzip /usr/local/bin/gitsign-amd64.gz
+        chmod +x /usr/local/bin/gitsign-amd64
+        mv gitsign-amd64 /usr/local/bin/gitsign
 
     - name: Verify Gitsign Installation
       run: |
