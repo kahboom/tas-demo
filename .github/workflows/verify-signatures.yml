@@ -45,8 +45,7 @@ jobs:
         shell: bash
         run: |
           set -ex
-          curl -fsL https://cli-server-trusted-artifact-signer.$APPS_DOMAIN/clients/linux/gitsign-amd64.gz -o 
-          /usr/local/bin/gitsign-amd64.gz
+          curl -fsL https://cli-server-trusted-artifact-signer.$APPS_DOMAIN/clients/linux/gitsign-amd64.gz -o /usr/local/bin/gitsign-amd64.gz
           gunzip /usr/local/bin/gitsign-amd64.gz
           chmod +x /usr/local/bin/gitsign-amd64
           mv /usr/local/bin/gitsign-amd64 /usr/local/bin/gitsign
