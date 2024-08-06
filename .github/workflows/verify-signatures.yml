@@ -66,7 +66,7 @@ jobs:
 
       - name: Verify Commit Signatures
         run: |
-          gitsign verify --certificate-identity=rachelyordan@gmail.com --certificate-oidc-issuer=${{ secrets.GITSIGN_OIDC_ISSUER }} HEAD
+          gitsign verify --certificate-identity=rachelyordan@gmail.com --certificate-oidc-issuer=$GITSIGN_OIDC_ISSUER HEAD
         shell: bash
 
       - name: Request OIDC token
